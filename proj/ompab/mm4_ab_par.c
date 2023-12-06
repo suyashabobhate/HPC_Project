@@ -157,3 +157,30 @@ void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__
   }
 
 }
+
+
+// j unroll on  ikj permutation ////////////////////////////// 
+void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+     int i, j, k;
+
+  #pragma omp parallel private(i,j,k) 
+  {  
+     #pragma omp for schedule (static)
+     for (i = 0; i < Ni; i++) {
+          for (k = 0; k < Nk; k++) {
+               int rem = Nk % 4;
+               for (j = 0; j < Nj - rem; j+=4) {
+                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+                    C[i*Nj+(j+1)]=C[i*Nj+(j+1)]+A[i*Nk+k]*B[k*Nj+(j+1)];
+                    C[i*Nj+(j+2)]=C[i*Nj+(j+2)]+A[i*Nk+k]*B[k*Nj+(j+2)];
+                    C[i*Nj+(j+3)]=C[i*Nj+(j+3)]+A[i*Nk+k]*B[k*Nj+(j+3)];
+               }
+               for (j = Nj - rem; j < Nj; j++) {
+                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+               }
+          }  
+          
+     }
+  }
+
+}
