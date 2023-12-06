@@ -17,6 +17,7 @@ void ab_permute_kij_par(const float *__restrict__ A, const float *__restrict__ B
 void ab_paralellonj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+void ab_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 
 void ab_seq(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk)
 {
@@ -58,7 +59,7 @@ int main(int argc, char *argv[]){
   printf("Max Threads (from omp_get_max_threads) = %d\n",max_threads);
   num_cases = 3; nthreads[0]=1; nthreads[1] = max_threads/2 - 1; nthreads[2] = max_threads - 1;
 
-  for(int version=0; version<9;version++)
+  for(int version=0; version<10;version++)
   {
     printf("Reference sequential code performance for AB (in GFLOPS)");
     mint_seq = 1e9; maxt_seq = 0;
@@ -91,6 +92,7 @@ int main(int argc, char *argv[]){
       case 6: ab_paralellonj_par(A,B,C,Ni,Nj,Nk); break;
       case 7: ab_paralellonj_permute_ikj_par(A,B,C,Ni,Nj,Nk); break;
       case 8: ab_junroll_permute_ikj_par(A,B,C,Ni,Nj,Nk); break;
+      case 9: ab_kunroll_permute_ikj_par(A,B,C,Ni,Nj,Nk); break;
       }
     telapsed = omp_get_wtime()-tstart;
     if (telapsed < mint_par[nt]) mint_par[nt]=telapsed;
@@ -108,6 +110,7 @@ for (int l = 0; l < Ni*Nj; l++) if (fabs((C[l] - Cref[l])/Cref[l])>threshold) {p
     case 6: printf("Performance (Best & Worst) of parallel version for ab_paralellonj_par (in GFLOPS)"); break;
     case 7: printf("Performance (Best & Worst) of parallel version for ab_paralellonj_permute_ikj_par (in GFLOPS)"); break;
     case 8: printf("Performance (Best & Worst) of parallel version for ab_junroll_permute_ikj_par (in GFLOPS)"); break;
+    case 9: printf("Performance (Best & Worst) of parallel version for ab_kunroll_permute_ikj_par (in GFLOPS)"); break;
     }
     for (nt=0;nt<num_cases;nt++) printf("%d/",nthreads[nt]);
     printf(" using %d threads\n",nthreads[num_cases-1]);
