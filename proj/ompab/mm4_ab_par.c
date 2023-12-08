@@ -159,7 +159,7 @@ void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__
 }
 
 
-// j unroll on  ikj permutation ////////////////////////////// 
+// j unroll on ikj permutation ////////////////////////////// 
 void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
      int i, j, k;
 
@@ -185,7 +185,46 @@ void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__rest
 
 }
 
-// k unroll on  ikj permutation ////////////////////////////// 
+// // k and j unroll on ikj permutation ////////////////////////////// 
+// void ab_kjunroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
+
+//   #pragma omp parallel private(i,j,k) 
+//   {  
+//      #pragma omp for schedule (static)
+//      for (i = 0; i < Ni; i++) {
+//           for (k = 0; k < Nk; k+=4) {
+//                for (j = 0; j < Nj; j+=4) {
+//                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+//                     C[i*Nj+(j+1)]=C[i*Nj+(j+1)]+A[i*Nk+k]*B[k*Nj+(j+1)];
+//                     C[i*Nj+(j+2)]=C[i*Nj+(j+2)]+A[i*Nk+k]*B[k*Nj+(j+2)];
+//                     C[i*Nj+(j+3)]=C[i*Nj+(j+3)]+A[i*Nk+k]*B[k*Nj+(j+3)];
+
+//                     C[i*Nj+(j+4)]=C[i*Nj+(j+4)]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
+//                     C[i*Nj+(j+5)]=C[i*Nj+(j+5)]+A[i*Nk+(k+1)]*B[(k+1)*Nj+(j+1)];
+//                     C[i*Nj+(j+6)]=C[i*Nj+(j+6)]+A[i*Nk+(k+1)]*B[(k+1)*Nj+(j+2)];
+//                     C[i*Nj+(j+7)]=C[i*Nj+(j+7)]+A[i*Nk+(k+1)]*B[(k+1)*Nj+(j+3)];
+
+//                     C[i*Nj+(j+8)]=C[i*Nj+(j+8)]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
+//                     C[i*Nj+(j+9)]=C[i*Nj+(j+9)]+A[i*Nk+(k+2)]*B[(k+2)*Nj+(j+1)];
+//                     C[i*Nj+(j+10)]=C[i*Nj+(j+10)]+A[i*Nk+(k+2)]*B[(k+2)*Nj+(j+2)];
+//                     C[i*Nj+(j+11)]=C[i*Nj+(j+11)]+A[i*Nk+(k+2)]*B[(k+2)*Nj+(j+3)];
+
+//                     C[i*Nj+(j+12)]=C[i*Nj+(j+12)]+A[i*Nk+(k+3)]*B[(k+3)*Nj+j];
+//                     C[i*Nj+(j+13)]=C[i*Nj+(j+13)]+A[i*Nk+(k+3)]*B[(k+3)*Nj+(j+1)];
+//                     C[i*Nj+(j+14)]=C[i*Nj+(j+14)]+A[i*Nk+(k+3)]*B[(k+3)*Nj+(j+2)];
+//                     C[i*Nj+(j+15)]=C[i*Nj+(j+15)]+A[i*Nk+(k+3)]*B[(k+3)*Nj+(j+3)];
+//                }
+               
+              
+//           } 
+          
+//      }
+//   }
+
+// }
+
+// k unroll on ikj permutation ////////////////////////////// 
 void ab_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
      int i, j, k;
 
@@ -195,7 +234,7 @@ void ab_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__rest
      for (i = 0; i < Ni; i++) {
           int rem = Ni % 4;
           for (k = 0; k < Nk - rem; k+=4) {
-               for (j = 0; j < Nj - rem; j++) {
+               for (j = 0; j < Nj; j++) {
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
