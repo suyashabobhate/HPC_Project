@@ -33,10 +33,10 @@ int main(int argc, char *argv[]){
      mint_par[nt] = 1e9; maxt_par[nt] = 0;
       tstart = omp_get_wtime();
       switch (version) {
-      case 0: printf("For AB for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o abtest ../ompab/mm4_ab_main.c ../ompab/mm4_ab_par.c; ./abtest %d %d %d", Ni, Nj, Nk); system(command); break;
-      case 1: printf("For ABT for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o abttest ../ompabt/mm4_atb_main.c ../ompab/mm4_atb_par.c; ./atbtest %d %d %d", Ni, Nj, Nk); system(command); break;
-      case 2: printf("For ATB for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o atbtest ../ompatb/mm4_abt_main.c ../ompab/mm4_abt_par.c; ./abttest %d %d %d", Ni, Nj, Nk); system(command); break;
-      case 3: printf("For ATBT for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o atbttest ../ompatbt/mm4_atbt_main.c ../ompab/mm4_atbt_par.c; ./atbttest %d %d %d", Ni, Nj, Nk); system(command); break;
+      // case 0: printf("For AB for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o abtest ../ompab/mm4_ab_main.c ../ompab/mm4_ab_par.c; ./abtest %d %d %d", Ni, Nj, Nk); system(command); break;
+      case 1: printf("For ABT for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o abttest ../ompabt/mm4_abt_main.c ../ompabt/mm4_abt_par.c; ./abttest %d %d %d", Ni, Nj, Nk); system(command); break;
+      case 2: printf("For ATB for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o atbtest ../ompatb/mm4_atb_main.c ../ompatb/mm4_atb_par.c; ./atbtest %d %d %d", Ni, Nj, Nk); system(command); break;
+      case 3: printf("For ATBT for trial: %d \n", nt+1); sprintf(command, "clang -O3 -fopenmp -o atbttest ../ompatbt/mm4_atbt_main.c ../ompatbt/mm4_atbt_par.c; ./atbttest %d %d %d", Ni, Nj, Nk); system(command); break;
       }
     telapsed = omp_get_wtime()-tstart;
     if (telapsed < mint_par[nt]) mint_par[nt]=telapsed;
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
     }
   
     switch (version) {
-    case 0: printf("Performance (Best & Worst) of parallel version for AB (in GFLOPS)"); break;
+    // case 0: printf("Performance (Best & Worst) of parallel version for AB (in GFLOPS)"); break;
     case 1: printf("Performance (Best & Worst) of parallel version for ATB (in GFLOPS)"); break;
     case 2: printf("Performance (Best & Worst) of parallel version for ABT (in GFLOPS)"); break;
     case 3: printf("Performance (Best & Worst) of parallel version for ATBT (in GFLOPS)"); break;
