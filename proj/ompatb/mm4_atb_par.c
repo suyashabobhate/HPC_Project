@@ -262,3 +262,26 @@ void atb_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__res
   }
 
 }
+
+// k unroll on kij permutation ////////////////////////////// 
+void atb_kunroll_permute_kij_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+     int i, j, k;
+
+  #pragma omp parallel private(i,j,k) 
+  {  
+     for (k = 0; k < Nk; k+=4) {
+          #pragma omp for schedule (static)
+          for (i = 0; i < Ni; i++) {
+               for (j = 0; j < Nj; j++) {
+                    C[i*Nj+j]=C[i*Nj+j]+A[k*Ni+i]*B[k*Nj+j];
+                    C[i*Nj+j]=C[i*Nj+j]+A[(k+1)*Ni+i]*B[(k+1)*Nj+j];
+                    C[i*Nj+j]=C[i*Nj+j]+A[(k+2)*Ni+i]*B[(k+2)*Nj+j];
+                    C[i*Nj+j]=C[i*Nj+j]+A[(k+3)*Ni+i]*B[(k+3)*Nj+j];
+               }
+          } 
+
+     }
+          
+  }
+
+}
