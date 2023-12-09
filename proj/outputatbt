@@ -1,0 +1,164 @@
+[u1414463@lab1-29 original files]$ ./maintest4
+Specify Matrix dimension Ni, Nj, Nk: 64 64 64
+1/7/15/ using 15 threads
+Best Performance (GFLOPS): inf inf inf 
+Worst Performance (GFLOPS): inf inf inf 
+1/7/15/ using 15 threads
+Best Performance (GFLOPS): inf inf inf 
+Worst Performance (GFLOPS): inf inf inf 
+1/7/15/ using 15 threads
+Best Performance (GFLOPS): inf inf inf 
+Worst Performance (GFLOPS): inf inf inf 
+For ATBT for trial: 1 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for ATBT (in GFLOPS) Min: 3.56; Max: 3.67
+Performance (Best & Worst) of parallel version for atbt_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.30 20.17 7.28 
+Worst Performance (GFLOPS): 3.14 1.29 0.34 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 5.09 30.97 7.94 
+Worst Performance (GFLOPS): 5.04 23.90 7.28 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.57 15.93 7.28 
+Worst Performance (GFLOPS): 2.55 13.83 6.47 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_alltile16_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.62 10.28 7.19 
+Worst Performance (GFLOPS): 2.60 9.36 6.64 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.64 15.38 7.09 
+Worst Performance (GFLOPS): 3.57 13.74 6.56 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.55 7.94 0.35 
+Worst Performance (GFLOPS): 3.52 6.54 0.35 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.52 6.89 0.35 
+Worst Performance (GFLOPS): 2.50 6.47 0.35 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.00 0.26 0.20 
+Worst Performance (GFLOPS): 1.98 0.25 0.19 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.55 14.96 22.91 
+Worst Performance (GFLOPS): 3.49 13.09 17.45 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.16 21.99 30.97 
+Worst Performance (GFLOPS): 4.03 18.64 23.65 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.63; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junrollby8 (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.26 24.99 37.91 
+Worst Performance (GFLOPS): 4.16 20.17 26.49 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.16 17.45 20.17 
+Worst Performance (GFLOPS): 4.06 14.10 16.92 
+For ATBT for trial: 2 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for ATBT (in GFLOPS) Min: 3.08; Max: 3.75
+Performance (Best & Worst) of parallel version for atbt_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.36 20.17 7.40 
+Worst Performance (GFLOPS): 2.65 1.19 1.37 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 5.09 30.97 8.46 
+Worst Performance (GFLOPS): 4.90 22.91 7.72 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.58 15.93 7.38 
+Worst Performance (GFLOPS): 2.56 13.74 6.92 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_alltile16_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.64 10.28 7.19 
+Worst Performance (GFLOPS): 2.59 9.40 6.25 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.63; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.64 15.93 7.61 
+Worst Performance (GFLOPS): 3.59 14.19 7.09 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.55 8.17 0.36 
+Worst Performance (GFLOPS): 3.49 7.61 0.36 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.68; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.53 6.64 0.36 
+Worst Performance (GFLOPS): 2.50 6.25 0.35 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.02 0.26 0.20 
+Worst Performance (GFLOPS): 2.02 0.25 0.19 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.54 14.19 21.77 
+Worst Performance (GFLOPS): 3.47 12.22 18.17 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.16 22.91 32.82 
+Worst Performance (GFLOPS): 4.03 18.80 24.99 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.63; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junrollby8 (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.26 23.90 37.91 
+Worst Performance (GFLOPS): 4.16 20.17 26.18 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.16 17.45 20.94 
+Worst Performance (GFLOPS): 4.10 15.06 16.41 
+For ATBT for trial: 3 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for ATBT (in GFLOPS) Min: 3.18; Max: 3.77
+Performance (Best & Worst) of parallel version for atbt_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.34 20.17 28.93 
+Worst Performance (GFLOPS): 2.62 1.46 1.58 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 5.09 30.54 37.27 
+Worst Performance (GFLOPS): 4.99 23.90 26.18 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.58 15.93 29.32 
+Worst Performance (GFLOPS): 2.52 13.83 21.77 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_alltile16_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.64 10.28 10.09 
+Worst Performance (GFLOPS): 2.61 9.36 8.90 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.64 16.41 23.90 
+Worst Performance (GFLOPS): 3.59 13.74 18.64 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.54 8.08 8.33 
+Worst Performance (GFLOPS): 3.50 7.61 7.61 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.63; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.52 7.09 7.38 
+Worst Performance (GFLOPS): 2.50 6.47 6.64 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_paralellonj_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 2.05 0.27 0.20 
+Worst Performance (GFLOPS): 2.03 0.27 0.20 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 3.54 14.19 21.77 
+Worst Performance (GFLOPS): 3.47 12.49 17.45 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.63; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_ikj_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.16 22.91 32.82 
+Worst Performance (GFLOPS): 4.10 19.46 23.90 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.65; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_junrollby8 (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.26 26.18 37.27 
+Worst Performance (GFLOPS): 4.20 20.94 26.18 
+Reference sequential code performance for ATBT (in GFLOPS) Min: 2.66; Max: 2.69
+Performance (Best & Worst) of parallel version for atbt_kunroll_permute_kij_par (in GFLOPS)1/7/ using 15 threads
+Best Performance (GFLOPS): 4.13 18.02 20.17 
+Worst Performance (GFLOPS): 4.10 14.96 16.92 
+Performance (Best & Worst) of parallel version for ATBT (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 0.00 0.00 0.00 
+Worst Performance (GFLOPS): 0.00 0.00 0.00 
