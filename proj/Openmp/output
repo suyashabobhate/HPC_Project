@@ -1,0 +1,179 @@
+[u1414463@lab1-29 original files]$ ./maintest2
+Specify Matrix dimension Ni, Nj, Nk: 4096 4096 64
+For AB for trial: 1 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for AB (in GFLOPS) Min: 1.82; Max: 1.84
+Performance (Best & Worst) of parallel version for ab_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.18 7.95 12.38 
+Worst Performance (GFLOPS): 1.17 7.94 12.29 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.80; Max: 1.86
+Performance (Best & Worst) of parallel version for ab_junroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 2.07 14.05 20.85 
+Worst Performance (GFLOPS): 2.06 13.88 18.61 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_kunroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.08 7.46 11.74 
+Worst Performance (GFLOPS): 1.08 6.56 11.54 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_alltile16_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.47 10.08 13.10 
+Worst Performance (GFLOPS): 1.46 10.07 12.77 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 17.34 109.90 131.69 
+Worst Performance (GFLOPS): 17.20 109.13 128.37 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_permute_kij_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 3.90 9.47 9.13 
+Worst Performance (GFLOPS): 3.90 9.11 8.95 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_paralellonj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.16 7.87 12.04 
+Worst Performance (GFLOPS): 1.15 7.82 12.02 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_paralellonj_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 16.41 13.40 10.89 
+Worst Performance (GFLOPS): 16.33 13.20 8.53 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_junroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 3.94 27.50 29.63 
+Worst Performance (GFLOPS): 3.93 20.64 27.17 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_kunroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 16.44 106.92 133.30 
+Worst Performance (GFLOPS): 16.41 104.39 131.38 
+For AB for trial: 2 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for AB (in GFLOPS) Min: 1.75; Max: 1.76
+Performance (Best & Worst) of parallel version for ab_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.14 7.88 12.40 
+Worst Performance (GFLOPS): 1.14 7.87 12.21 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.72; Max: 1.76
+Performance (Best & Worst) of parallel version for ab_junroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.95 13.55 19.90 
+Worst Performance (GFLOPS): 1.95 13.31 19.26 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.74; Max: 1.76
+Performance (Best & Worst) of parallel version for ab_kunroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.09 7.40 11.39 
+Worst Performance (GFLOPS): 1.07 7.37 11.16 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.75; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_alltile16_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.50 10.13 12.86 
+Worst Performance (GFLOPS): 1.47 10.05 12.81 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.76; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 17.43 110.91 133.93 
+Worst Performance (GFLOPS): 17.22 107.30 128.48 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_permute_kij_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 3.98 9.71 9.29 
+Worst Performance (GFLOPS): 3.97 9.36 9.24 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.76; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_paralellonj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.16 7.82 12.01 
+Worst Performance (GFLOPS): 1.15 7.72 11.99 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.76; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_paralellonj_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 16.54 12.94 9.30 
+Worst Performance (GFLOPS): 16.42 12.86 9.19 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.79
+Performance (Best & Worst) of parallel version for ab_junroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 4.02 27.49 29.63 
+Worst Performance (GFLOPS): 4.00 27.47 29.62 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_kunroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 17.42 102.43 136.04 
+Worst Performance (GFLOPS): 17.41 102.18 131.76 
+For AB for trial: 3 
+Max Threads (from omp_get_max_threads) = 16
+Reference sequential code performance for AB (in GFLOPS) Min: 1.79; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.17 7.85 12.38 
+Worst Performance (GFLOPS): 1.17 7.83 12.13 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_junroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 2.03 13.75 20.21 
+Worst Performance (GFLOPS): 2.02 13.49 18.14 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_kunroll_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.10 7.40 11.77 
+Worst Performance (GFLOPS): 1.10 7.39 11.55 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.80
+Performance (Best & Worst) of parallel version for ab_alltile16_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.50 10.10 13.24 
+Worst Performance (GFLOPS): 1.49 10.09 11.11 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 17.65 110.67 133.98 
+Worst Performance (GFLOPS): 17.44 63.70 130.95 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.77; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_permute_kij_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 3.98 9.74 9.34 
+Worst Performance (GFLOPS): 3.95 9.39 9.27 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_paralellonj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 1.17 7.84 12.16 
+Worst Performance (GFLOPS): 1.17 7.45 12.12 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_paralellonj_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 16.81 13.42 10.23 
+Worst Performance (GFLOPS): 16.40 13.08 9.94 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.79; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_junroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 4.04 27.51 29.64 
+Worst Performance (GFLOPS): 4.02 27.48 29.63 
+Reference sequential code performance for AB (in GFLOPS) Min: 1.78; Max: 1.81
+Performance (Best & Worst) of parallel version for ab_kunroll_permute_ikj_par (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 16.85 105.73 135.82 
+Worst Performance (GFLOPS): 16.55 104.30 118.20 
+Performance (Best & Worst) of parallel version for AB (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 0.02 0.02 0.02 
+Worst Performance (GFLOPS): 0.02 0.02 0.02 
+For ABT for trial: 1 
+clang-15: error: no such file or directory: '../ompabt/mm4_atb_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_atb_par.c'
+clang-15: error: no input files
+sh: ./atbtest: No such file or directory
+For ABT for trial: 2 
+clang-15: error: no such file or directory: '../ompabt/mm4_atb_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_atb_par.c'
+clang-15: error: no input files
+sh: ./atbtest: No such file or directory
+For ABT for trial: 3 
+clang-15: error: no such file or directory: '../ompabt/mm4_atb_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_atb_par.c'
+clang-15: error: no input files
+sh: ./atbtest: No such file or directory
+Performance (Best & Worst) of parallel version for ATB (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 74.37 123.86 120.93 
+Worst Performance (GFLOPS): 74.37 123.86 120.93 
+For ATB for trial: 1 
+clang-15: error: no such file or directory: '../ompatb/mm4_abt_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_abt_par.c'
+clang-15: error: no input files
+sh: ./abttest: No such file or directory
+For ATB for trial: 2 
+clang-15: error: no such file or directory: '../ompatb/mm4_abt_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_abt_par.c'
+clang-15: error: no input files
+sh: ./abttest: No such file or directory
+For ATB for trial: 3 
+clang-15: error: no such file or directory: '../ompatb/mm4_abt_main.c'
+clang-15: error: no such file or directory: '../ompab/mm4_abt_par.c'
+clang-15: error: no input files
+sh: ./abttest: No such file or directory
+Performance (Best & Worst) of parallel version for ABT (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 119.84 123.60 127.73 
+Worst Performance (GFLOPS): 119.84 123.60 127.73 
+For ATBT for trial: 1 
+clang-15: error: no such file or directory: '../ompab/mm4_atbt_par.c'
+sh: ./atbttest: No such file or directory
+For ATBT for trial: 2 
+clang-15: error: no such file or directory: '../ompab/mm4_atbt_par.c'
+sh: ./atbttest: No such file or directory
+For ATBT for trial: 3 
+clang-15: error: no such file or directory: '../ompab/mm4_atbt_par.c'
+sh: ./atbttest: No such file or directory
+Performance (Best & Worst) of parallel version for ATBT (in GFLOPS)1/7/15/ using 15 threads
+Best Performance (GFLOPS): 120.77 141.58 143.01 
+Worst Performance (GFLOPS): 120.77 141.58 143.01 
