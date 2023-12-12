@@ -13,6 +13,11 @@ cudaEvent_t start, stop;
 float tstart, elapsedTime;
 
 __global__ void abt_gpu(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+__global__ void abt_gpu_kunroll(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+__global__ void abt_gpu_junroll(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+__global__ void abt_gpu_iunroll(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+__global__ void abt_gpu_junroll8(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+__global__ void abt_gpu_ijunroll(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 
 
 void abT_seq(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk)
@@ -60,7 +65,12 @@ int main(){
 
   dim3 block(BLOCK_SIZE,BLOCK_SIZE);  
   dim3 grid(ceil(Ni/(float)BLOCK_SIZE),ceil(Nk/(float)BLOCK_SIZE));
-  for(int version=0; version<4; version++)
+  dim3 grid2(ceil(Ni/(float)BLOCK_SIZE),ceil(Nk/4/(float)BLOCK_SIZE)); // j unroll 4
+  dim3 grid3(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nk/(float)BLOCK_SIZE)); // i unroll 4
+  dim3 grid4(ceil(Ni/(float)BLOCK_SIZE),ceil(Nk/8/(float)BLOCK_SIZE)); // j unroll 8
+  dim3 grid5(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nk/4/(float)BLOCK_SIZE)); // ij unroll 4
+
+  for(int version=0; version<6; version++)
   {
    for(i=0;i<Ni;i++) for(j=0;j<Nj;j++) h_Cref[i*Nj+j] = 0;
    abT_seq(h_A,h_B,h_Cref,Ni,Nj,Nk);
@@ -73,10 +83,12 @@ int main(){
       cudaEventRecord(start);
       // Launch kernel
       switch (version) {
-      case 0: abt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("AB "); break;
-      case 1: abt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATB ");break;
-      case 2: abt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT ");break;
-      case 3: abt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATBT ");
+      case 0: abt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT "); break;
+      case 1: abt_gpu_kunroll<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT K Unroll ");break;
+      case 2: abt_gpu_junroll<<<grid2, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT J Unroll ");break;
+      case 3: abt_gpu_iunroll<<<grid3, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT I Unroll "); break;
+      case 4: abt_gpu_junroll8<<<grid4, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT J Unroll by 8 "); break;
+      case 5: abt_gpu_ijunroll<<<grid5, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT IJ Unroll by 4 "); break;
       }
       checkCUDAError("GPU kernel launch failure");
       cudaEventRecord(stop);

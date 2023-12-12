@@ -1,0 +1,20 @@
+[u1414463@lab1-29 cudaabt]$ ./a.out
+Specify Matrix dimension Ni, Nj, Nk: 512 512 512
+Trial 0: ABT GFLOPS: 49.38
+Trial 1: ABT GFLOPS: 50.55
+Trial 2: ABT GFLOPS: 50.56
+Trial 0: ABT K Unroll GFLOPS: 50.47
+Trial 1: ABT K Unroll GFLOPS: 50.56
+Trial 2: ABT K Unroll GFLOPS: 50.56
+Trial 0: ABT J Unroll GFLOPS: 123.47
+Trial 1: ABT J Unroll GFLOPS: 123.93
+Trial 2: ABT J Unroll GFLOPS: 123.54
+Trial 0: ABT I Unroll GFLOPS: 45.51
+Trial 1: ABT I Unroll GFLOPS: 45.51
+Trial 2: ABT I Unroll GFLOPS: 45.54
+Trial 0: ABT J Unroll by 8 GFLOPS: 176.78
+Trial 1: ABT J Unroll by 8 GFLOPS: 178.24
+Trial 2: ABT J Unroll by 8 GFLOPS: 179.80
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 139.43
+Trial 1: ABT IJ Unroll by 4 GFLOPS: 123.70
+Trial 2: ABT IJ Unroll by 4 GFLOPS: 140.50
