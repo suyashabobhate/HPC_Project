@@ -1,0 +1,25 @@
+ 37 37 728271 - ab - works for all
+                abt, atb - doesnt work for k unroll 
+                atbt - doesnt work for atbt_junroll_permute_ikj_par - rest all works -{atbt_junroll_par}
+
+ 16 16 4194304 - ab - doesnt work for 
+
+ 8192 8192 16 - all work
+
+ 4096 4096 64 - ab - {ab_permute_ikj_par, ab_kunroll_permute_ikj_par}
+              - abt - {abt_junrollby8}
+              - atb - {atb_kunroll_permute_ikj_par}
+              - atbt - {atbt_alltile16_par}
+
+1024 1024 1024 - all work
+               - ab - {ab_permute_ikj_par, ab_kunroll_permute_ikj_par}
+               - abt - {abt_junroll_par, abt_junrollby8}
+               - atb - {atb_permute_kij_par, atb_kunroll_permute_kij_par, atb_kunroll_permute_ikj_par}
+               - atbt - {atbt_alltile16_par}
+
+
+999 999 999 - all work
+            - ab - {ab_permute_ikj_par, ab_kunroll_permute_ikj_par}
+            - abt - rest all work - {abt_junroll_par}
+            - atb - REMOVED -{doesnt work for atb_kunroll_permute_kij_par}; rest all work - {atb_permute_kij_par, atb_kunroll_permute_ikj_par}
+            -atbt - REMOVED -{doesnt work for atb_kunroll_permute_kij_par}; rest all work - {atbt_alltile16_par}

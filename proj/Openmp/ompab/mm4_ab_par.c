@@ -1,3 +1,7 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #define min(X, Y) (((X) < (Y)) ? (X) : (Y))
 
 void ab_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk)
@@ -26,15 +30,15 @@ void ab_kunroll_par(const float *__restrict__ A, const float *__restrict__ B, fl
      #pragma omp for schedule (static)
      for (i = 0; i < Ni; i++) {
        for (j = 0; j < Nj; j++) {
-          int rem = Nj % 4;
-          for (k = 0; k < Nk - rem; k+=4){
+          int rem = Nk % 4;
+          for (k = 0; k < rem; k++){
+               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+          }
+          for (k = rem; k < Nk; k+=4){
                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[(k+3)*Nj+j];
-          }
-          for (k = Nk - rem; k < Nk; k++){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
           }
        }
      }
@@ -49,19 +53,19 @@ void ab_junroll_par(const float *__restrict__ A, const float *__restrict__ B, fl
   {
      #pragma omp for schedule(static)
      for (i = 0; i < Ni; i++) {
-       int rem  = Ni % 4;
-       for (j = 0; j < Nj - rem; j+=4) {
+       int rem  = Nj % 4;
+       for (j = 0; j < rem; j++) {
+          for (k = 0; k < Nk; k++){
+               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+          }
+
+       }
+       for (j = rem; j < Nj; j+=4) {       
           for (k = 0; k < Nk; k++){
                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                C[i*Nj+(j+1)]=C[i*Nj+(j+1)]+A[i*Nk+k]*B[k*Nj+(j+1)];
                C[i*Nj+(j+2)]=C[i*Nj+(j+2)]+A[i*Nk+k]*B[k*Nj+(j+2)];
                C[i*Nj+(j+3)]=C[i*Nj+(j+3)]+A[i*Nk+k]*B[k*Nj+(j+3)];
-          }
-          // C[i*Nj+j]=C[i*Nj+j]+A[i*Nj+j]*B[j*Nj+j];
-       }
-       for (j = Nj - rem; j < Nj; j++) {       
-          for (k = 0; k < Nk; k++){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
           }
        }
      }
@@ -168,15 +172,15 @@ void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__rest
      #pragma omp for schedule (static)
      for (i = 0; i < Ni; i++) {
           for (k = 0; k < Nk; k++) {
-               int rem = Nk % 4;
-               for (j = 0; j < Nj - rem; j+=4) {
+               int rem = Nj % 4;
+               for (j = 0; j < rem; j++) {
+                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+               }
+               for (j = rem; j < Nj; j+=4) {
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                     C[i*Nj+(j+1)]=C[i*Nj+(j+1)]+A[i*Nk+k]*B[k*Nj+(j+1)];
                     C[i*Nj+(j+2)]=C[i*Nj+(j+2)]+A[i*Nk+k]*B[k*Nj+(j+2)];
                     C[i*Nj+(j+3)]=C[i*Nj+(j+3)]+A[i*Nk+k]*B[k*Nj+(j+3)];
-               }
-               for (j = Nj - rem; j < Nj; j++) {
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                }
           }  
           
@@ -232,19 +236,20 @@ void ab_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__rest
   {  
      #pragma omp for schedule (static)
      for (i = 0; i < Ni; i++) {
-          int rem = Ni % 4;
-          for (k = 0; k < Nk - rem; k+=4) {
+          int rem = Nk % 4;
+          for (k = 0; k < rem; k++) {
+               for (j = 0; j < Nj; j++) {
+                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+               
+               }
+          } 
+
+          for (k = rem; k < Nk; k+=4) {
                for (j = 0; j < Nj; j++) {
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[(k+3)*Nj+j];
-               }
-          } 
-
-          for (k = Nk - rem; k < Nk; k++) {
-               for (j = 0; j < Nj; j++) {
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
                } 
           }
           

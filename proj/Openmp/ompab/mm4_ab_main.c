@@ -19,6 +19,7 @@ void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__
 void ab_junroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 void ab_kunroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 // void ab_kjunroll_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
+void ab_par_main(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk);
 
 void ab_seq(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk)
 {
@@ -83,6 +84,7 @@ int main(int argc, char *argv[]){
      {
       for(i=0;i<Ni;i++) for(j=0;j<Nj;j++) C[i*Nj+j] = 0;
       tstart = omp_get_wtime();
+      // ab_par_main(A,B,C,Ni,Nj,Nk);
       switch (version) {
       case 0: ab_par(A,B,C,Ni,Nj,Nk); break;
       case 1: ab_junroll_par(A,B,C,Ni,Nj,Nk); break;
