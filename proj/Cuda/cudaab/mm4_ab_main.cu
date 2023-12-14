@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #define threshold 0.0001
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 8
 #define FIXME 1
 
 void checkCUDAError(const char *msg);

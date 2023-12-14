@@ -4,11 +4,13 @@ __global__ void ab_gpu(const float *__restrict__ A, const float *__restrict__ B,
   int col = blockDim.y*blockIdx.y+threadIdx.y;
   float sum = 0;
 
-  for (int k = 0; k < Nk; k++) {
-    sum += A[row * Nk + k] * B[k * Nj + col];
-  }
+  if((row < Ni) && (col < Nj)) {
+    for (int k = 0; k < Nk; k++) {
+      sum += A[row * Nk + k] * B[k * Nj + col];
+    }
   
-  C[row * Nj + col] = sum; 
+    C[row * Nj + col] = sum; 
+  }
 }
 
 
@@ -19,6 +21,7 @@ __global__ void ab_gpu_kunroll(const float *__restrict__ A, const float *__restr
   int col = blockDim.y*blockIdx.y+threadIdx.y;
   float sum = 0;
 
+if((row < Ni) && (col < Nj)) {
   for (int k = 0; k < Nk; k+=4) {
     sum += A[row * Nk + k] * B[k * Nj + col];
     sum += A[row * Nk + (k+1)] * B[(k+1) * Nj + col];
@@ -27,6 +30,7 @@ __global__ void ab_gpu_kunroll(const float *__restrict__ A, const float *__restr
   }
   
   C[row * Nj + col] = sum; 
+}
 }
 
 // j unroll by 4 //
