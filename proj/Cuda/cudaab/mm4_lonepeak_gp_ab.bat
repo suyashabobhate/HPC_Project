@@ -12,8 +12,8 @@ echo " " | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
 module load cuda
 nvcc -O3 -o symab mm4_ab_main.cu mm4_ab_gpu.cu
 ./symab 37 37 728271 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
-./symab 999 999 999 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
-./symab 1024 1024 1024 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
-./symab 4096 4096 64 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
-./symab 8192 8192 16 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
-./symab 16 16 419430 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
+REM./symab 999 999 999 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
+REM./symab 1024 1024 1024 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
+REM./symab 4096 4096 64 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
+REM./symab 8192 8192 16 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
+REM./symab 16 16 419430 | tee -a lonepeak_mm_gpu.$SLURM_JOB_ID\.log
