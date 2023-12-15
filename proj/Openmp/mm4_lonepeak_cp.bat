@@ -13,3 +13,8 @@ echo " " | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
 echo "Par-No-UNR " | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
 gcc -O3 -fopenmp -o sym original\ files/main.c
 ./sym 1024 1024 1024 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 37 37 728271 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 16 16 4194304 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 8192 8192 16 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 4096 4096 64 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 999 999 999 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
