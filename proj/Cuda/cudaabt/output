@@ -1,20 +1,61 @@
-[u1414463@lab1-29 cudaabt]$ ./a.out
-Specify Matrix dimension Ni, Nj, Nk: 512 512 512
-Trial 0: ABT GFLOPS: 49.38
-Trial 1: ABT GFLOPS: 50.55
-Trial 2: ABT GFLOPS: 50.56
-Trial 0: ABT K Unroll GFLOPS: 50.47
-Trial 1: ABT K Unroll GFLOPS: 50.56
-Trial 2: ABT K Unroll GFLOPS: 50.56
-Trial 0: ABT J Unroll GFLOPS: 123.47
-Trial 1: ABT J Unroll GFLOPS: 123.93
-Trial 2: ABT J Unroll GFLOPS: 123.54
-Trial 0: ABT I Unroll GFLOPS: 45.51
-Trial 1: ABT I Unroll GFLOPS: 45.51
-Trial 2: ABT I Unroll GFLOPS: 45.54
-Trial 0: ABT J Unroll by 8 GFLOPS: 176.78
-Trial 1: ABT J Unroll by 8 GFLOPS: 178.24
-Trial 2: ABT J Unroll by 8 GFLOPS: 179.80
-Trial 0: ABT IJ Unroll by 4 GFLOPS: 139.43
-Trial 1: ABT IJ Unroll by 4 GFLOPS: 123.70
-Trial 2: ABT IJ Unroll by 4 GFLOPS: 140.50
+[u1414463@lab1-29 cudaabt]$ ./a.out 1024 1024 1024
+Trial 0: ABT GFLOPS: 50.61
+Trial 0: ABT K Unroll GFLOPS: 50.67
+Trial 0: ABT J Unroll GFLOPS: 495.90
+Trial 0: ABT I Unroll GFLOPS: 182.57
+Trial 0: ABT J Unroll by 8 GFLOPS: 1551.87
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 1768.30
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 4096 4096 64
+Trial 0: ABT GFLOPS: 50.96
+Trial 0: ABT K Unroll GFLOPS: 50.99
+Trial 0: ABT J Unroll GFLOPS: 553.11
+Trial 0: ABT I Unroll GFLOPS: 215.95
+Trial 0: ABT J Unroll by 8 GFLOPS: 1366.31
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 2476.80
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 8192 8192 16
+Trial 0: ABT GFLOPS: 50.85
+Trial 0: ABT K Unroll GFLOPS: 50.91
+Trial 0: ABT J Unroll GFLOPS: 443.26
+Trial 0: ABT I Unroll GFLOPS: 213.69
+Trial 0: ABT J Unroll by 8 GFLOPS: 973.64
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 1839.51
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 999 999 999
+Trial 0: ABT GFLOPS: 90.68
+Trial 0: ABT K Unroll GFLOPS: 90.86
+Trial 0: ABT J Unroll GFLOPS: 713.41
+Trial 0: ABT I Unroll GFLOPS: 242.81
+Trial 0: ABT J Unroll by 8 GFLOPS: 1883.58
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 3234.17
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 37 37 728271
+Trial 0: ABT GFLOPS: 35.48
+Trial 0: ABT K Unroll GFLOPS: 35.71
+Trial 0: ABT J Unroll GFLOPS: 10.06
+Trial 0: ABT I Unroll GFLOPS: 4.26
+Trial 0: ABT J Unroll by 8 GFLOPS: 5.50
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 12.46
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 333 333 8991
+Trial 0: ABT GFLOPS: 48.68
+Trial 0: ABT K Unroll GFLOPS: 46.77
+Trial 0: ABT J Unroll GFLOPS: 746.03
+Trial 0: ABT I Unroll GFLOPS: 232.19
+Trial 0: ABT J Unroll by 8 GFLOPS: 399.65
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 800.51
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 2997 2997 111
+Trial 0: ABT GFLOPS: 102.35
+Trial 0: ABT K Unroll GFLOPS: 102.44
+Trial 0: ABT J Unroll GFLOPS: 900.78
+Trial 0: ABT I Unroll GFLOPS: 304.91
+Trial 0: ABT J Unroll by 8 GFLOPS: 2006.14
+Trial 0: ABT IJ Unroll by 4 GFLOPS: 4304.55
+
+[u1414463@lab1-29 cudaabt]$ ./a.out 16 16 4194304
+Trial 0: ABT GFLOPS: 4.37
+Trial 0: ABT K Unroll GFLOPS: 4.59
+Trial 0: ABT J Unroll GFLOPS: 3.59
+Cuda error: cudaMemcpy D2H: an illegal memory access was encountered.

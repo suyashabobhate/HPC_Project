@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
       cudaEventRecord(start);
       // Launch kernel
       switch (version) {
-      case 0: atbt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ABT "); break;
+      case 0: atbt_gpu<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATBT "); break;
       case 1: atbt_gpu_kunroll<<<grid, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATBT K Unroll ");break;
       case 2: atbt_gpu_junroll<<<grid2, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATBT J Unroll ");break;
       case 3: atbt_gpu_iunroll<<<grid3, block>>>(d_A, d_B, d_C,Ni,Nj,Nk); printf("ATBT I Unroll "); break;

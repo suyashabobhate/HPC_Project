@@ -1,20 +1,63 @@
-[u1414463@lab1-29 cudaatb]$ ./a.out
-Specify Matrix dimension Ni, Nj, Nk: 512 512 512
-Trial 0: ATB GFLOPS: 203.83
-Trial 1: ATB GFLOPS: 215.61
-Trial 2: ATB GFLOPS: 215.89
-Trial 0: ATB K Unroll GFLOPS: 212.92
-Trial 1: ATB K Unroll GFLOPS: 215.58
-Trial 2: ATB K Unroll GFLOPS: 216.93
-Trial 0: ATB J Unroll GFLOPS: 295.07
-Trial 1: ATB J Unroll GFLOPS: 305.10
-Trial 2: ATB J Unroll GFLOPS: 315.74
-Trial 0: ATB I Unroll GFLOPS: 131.60
-Trial 1: ATB I Unroll GFLOPS: 133.11
-Trial 2: ATB I Unroll GFLOPS: 134.06
-Trial 0: ATB J Unroll by 8 GFLOPS: 292.03
-Trial 1: ATB J Unroll by 8 GFLOPS: 290.62
-Trial 2: ATB J Unroll by 8 GFLOPS: 290.29
-Trial 0: ATB IJ Unroll by 4 GFLOPS: 692.42
-Trial 1: ATB IJ Unroll by 4 GFLOPS: 745.06
-Trial 2: ATB IJ Unroll by 4 GFLOPS: 749.05
+[u1414463@lab1-29 cudaatb]$ ./a.out 1024 1024 1024
+Trial 0: ATB GFLOPS: 200.58
+Trial 0: ATB K Unroll GFLOPS: 200.59
+Trial 0: ATB J Unroll GFLOPS: 1164.60
+Trial 0: ATB I Unroll GFLOPS: 604.91
+Trial 0: ATB J Unroll by 8 GFLOPS: 2853.27
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 3100.86
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 4096 4096 64
+Trial 0: ATB GFLOPS: 198.32
+Trial 0: ATB K Unroll GFLOPS: 199.58
+Trial 0: ATB J Unroll GFLOPS: 1040.95
+Trial 0: ATB I Unroll GFLOPS: 780.72
+Trial 0: ATB J Unroll by 8 GFLOPS: 2239.35
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 5928.87
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 8192 8192 16
+Trial 0: ATB GFLOPS: 135.11
+Trial 0: ATB K Unroll GFLOPS: 138.63
+Trial 0: ATB J Unroll GFLOPS: 597.59
+Trial 0: ATB I Unroll GFLOPS: 491.33
+Trial 0: ATB J Unroll by 8 GFLOPS: 1243.59
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 2418.42
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 999 999 999
+Trial 0: ATB GFLOPS: 195.82
+Trial 0: ATB K Unroll GFLOPS: 193.10
+Trial 0: ATB J Unroll GFLOPS: 1129.00
+Trial 0: ATB I Unroll GFLOPS: 578.89
+Trial 0: ATB J Unroll by 8 GFLOPS: 2708.66
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 3205.55
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 37 37 728271
+Trial 0: ATB GFLOPS: 38.50
+Trial 0: ATB K Unroll GFLOPS: 46.26
+Trial 0: ATB J Unroll GFLOPS: 9.87
+Trial 0: ATB I Unroll GFLOPS: 3.54
+Trial 0: ATB J Unroll by 8 GFLOPS: 11.59
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 5.60
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 333 333 8991
+Trial 0: ATB GFLOPS: 187.08
+Trial 0: ATB K Unroll GFLOPS: 104.42
+Trial 0: ATB J Unroll GFLOPS: 702.34
+Trial 0: ATB I Unroll GFLOPS: 258.81
+Trial 0: ATB J Unroll by 8 GFLOPS: 807.88
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 388.31
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 2997 2997 111
+Trial 0: ATB GFLOPS: 193.10
+Trial 0: ATB K Unroll GFLOPS: 194.76
+Trial 0: ATB J Unroll GFLOPS: 1105.93
+Trial 0: ATB I Unroll GFLOPS: 823.23
+Trial 0: ATB J Unroll by 8 GFLOPS: 2314.31
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 6042.74
+
+[u1414463@lab1-29 cudaatb]$ ./a.out 16 16 4194304
+Trial 0: ATB GFLOPS: 7.03
+Trial 0: ATB K Unroll GFLOPS: 9.38
+Trial 0: ATB J Unroll GFLOPS: 2.13
+Trial 0: ATB I Unroll GFLOPS: 0.87
+Trial 0: ATB J Unroll by 8 GFLOPS: 2.36
+Trial 0: ATB IJ Unroll by 4 GFLOPS: 1.05

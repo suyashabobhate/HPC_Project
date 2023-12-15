@@ -1,20 +1,63 @@
-[u1414463@lab1-29 cudaatbt]$ ./a.out 
-Specify Matrix dimension Ni, Nj, Nk: 512 512 512
-Trial 0: ABT GFLOPS: 195.20
-Trial 1: ABT GFLOPS: 216.61
-Trial 2: ABT GFLOPS: 216.87
-Trial 0: ATBT K Unroll GFLOPS: 211.83
-Trial 1: ATBT K Unroll GFLOPS: 216.32
-Trial 2: ATBT K Unroll GFLOPS: 216.65
-Trial 0: ATBT J Unroll GFLOPS: 290.63
-Trial 1: ATBT J Unroll GFLOPS: 307.99
-Trial 2: ATBT J Unroll GFLOPS: 308.52
-Trial 0: ATBT I Unroll GFLOPS: 173.47
-Trial 1: ATBT I Unroll GFLOPS: 176.31
-Trial 2: ATBT I Unroll GFLOPS: 176.33
-Trial 0: ATBT J Unroll by 8 GFLOPS: 284.94
-Trial 1: ATBT J Unroll by 8 GFLOPS: 292.46
-Trial 2: ATBT J Unroll by 8 GFLOPS: 297.06
-Trial 0: ATBT IJ Unroll by 4 GFLOPS: 702.62
-Trial 1: ATBT IJ Unroll by 4 GFLOPS: 747.51
-Trial 2: ATBT IJ Unroll by 4 GFLOPS: 750.52
+[u1414463@lab1-29 cudaatbt]$ ./a.out 1024 1024 1024
+Trial 0: ATBT GFLOPS: 201.31
+Trial 0: ATBT K Unroll GFLOPS: 202.35
+Trial 0: ATBT J Unroll GFLOPS: 1107.59
+Trial 0: ATBT I Unroll GFLOPS: 549.15
+Trial 0: ATBT J Unroll by 8 GFLOPS: 2292.13
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 4289.20
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 4096 4096 64
+Trial 0: ATBT GFLOPS: 199.74
+Trial 0: ATBT K Unroll GFLOPS: 200.41
+Trial 0: ATBT J Unroll GFLOPS: 1021.20
+Trial 0: ATBT I Unroll GFLOPS: 795.12
+Trial 0: ATBT J Unroll by 8 GFLOPS: 1883.28
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 5710.42
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 8192 8192 16
+Trial 0: ATBT GFLOPS: 138.20
+Trial 0: ATBT K Unroll GFLOPS: 138.63
+Trial 0: ATBT J Unroll GFLOPS: 549.15
+Trial 0: ATBT I Unroll GFLOPS: 474.05
+Trial 0: ATBT J Unroll by 8 GFLOPS: 1072.54
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 2561.70
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 999 999 999
+Trial 0: ATBT GFLOPS: 193.73
+Trial 0: ATBT K Unroll GFLOPS: 195.02
+Trial 0: ATBT J Unroll GFLOPS: 1094.30
+Trial 0: ATBT I Unroll GFLOPS: 524.69
+Trial 0: ATBT J Unroll by 8 GFLOPS: 2180.98
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 4110.06
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 37 37 728271
+Trial 0: ATBT GFLOPS: 54.20
+Trial 0: ATBT K Unroll GFLOPS: 53.60
+Trial 0: ATBT J Unroll GFLOPS: 7.88
+Trial 0: ATBT I Unroll GFLOPS: 3.82
+Trial 0: ATBT J Unroll by 8 GFLOPS: 4.75
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 7.32
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 333 333 8991
+Trial 0: ATBT GFLOPS: 136.89
+Trial 0: ATBT K Unroll GFLOPS: 134.98
+Trial 0: ATBT J Unroll GFLOPS: 617.95
+Trial 0: ATBT I Unroll GFLOPS: 235.73
+Trial 0: ATBT J Unroll by 8 GFLOPS: 334.80
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 539.94
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 2997 2997 111
+Trial 0: ATBT GFLOPS: 196.29
+Trial 0: ATBT K Unroll GFLOPS: 196.79
+Trial 0: ATBT J Unroll GFLOPS: 1097.05
+Trial 0: ATBT I Unroll GFLOPS: 814.07
+Trial 0: ATBT J Unroll by 8 GFLOPS: 2002.85
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 6919.79
+
+[u1414463@lab1-29 cudaatbt]$ ./a.out 16 16 4194304
+Trial 0: ATBT GFLOPS: 10.10
+Trial 0: ATBT K Unroll GFLOPS: 10.68
+Trial 0: ATBT J Unroll GFLOPS: 1.64
+Trial 0: ATBT I Unroll GFLOPS: 1.09
+Trial 0: ATBT J Unroll by 8 GFLOPS: 0.97
+Trial 0: ATBT IJ Unroll by 4 GFLOPS: 1.41
