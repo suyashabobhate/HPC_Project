@@ -12,4 +12,4 @@ echo "*** Assigned Lonepeak Node: " $SLURMD_NODENAME | tee -a lonepeak_sym.$SLUR
 echo " " | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
 echo "Par-No-UNR " | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
 gcc -O3 -fopenmp -o sym original\ files/main.c
-./sym | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
+./sym 1024 1024 1024 | tee -a lonepeak_sym.$SLURM_JOB_ID\.log
