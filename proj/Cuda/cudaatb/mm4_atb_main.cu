@@ -37,7 +37,6 @@ int main(int argc, char *argv[]){
 
   int Ni, Nj, Nk;
 
-  printf("Specify Matrix dimension Ni, Nj, Nk: ");
   if(argc >= 3) {
         Ni = atoi(argv[1]);
         Nj = atoi(argv[2]);
@@ -77,7 +76,7 @@ int main(int argc, char *argv[]){
   {
    for(i=0;i<Ni;i++) for(j=0;j<Nj;j++) h_Cref[i*Nj+j] = 0;
    aTb_seq(h_A,h_B,h_Cref,Ni,Nj,Nk);
-    for(int trial=0;trial<3;trial++)
+    for(int trial=0;trial<1;trial++)
     {
      for(i=0;i<Ni;i++) for(j=0;j<Nj;j++) h_C[i*Nj+j] = 0; 
       printf("Trial %d: ",trial);
