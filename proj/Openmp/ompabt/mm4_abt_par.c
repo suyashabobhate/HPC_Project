@@ -18,29 +18,29 @@ void abt_par(const float *__restrict__ A, const float *__restrict__ B, float *__
 }
 
 ///////////////// k unrolling ///////////////////////////////////////////////
-void abt_kunroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// void abt_kunroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {
+//   #pragma omp parallel private(i,j,k) 
+//   {
 
-     #pragma omp for schedule (static)
-     for (i = 0; i < Ni; i++) {
-       for (j = 0; j < Nj; j++) {
-          int rem = Nk % 4;
-          for (k = 0; k < rem; k++){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
-          }
-          for (k = rem; k < Nk; k+=4){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[j*Nk+(k+1)];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[j*Nk+(k+2)];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[j*Nk+(k+3)];
-          }
-       }
-     }
-  }
-}
+//      #pragma omp for schedule (static)
+//      for (i = 0; i < Ni; i++) {
+//        for (j = 0; j < Nj; j++) {
+//           int rem = Nk % 4;
+//           for (k = 0; k < rem; k++){
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
+//           }
+//           for (k = rem; k < Nk; k+=4){
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[j*Nk+(k+1)];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[j*Nk+(k+2)];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[j*Nk+(k+3)];
+//           }
+//        }
+//      }
+//   }
+// }
 
 ///////////////// j unrolling ///////////////////////////////////////////////
 void abt_junroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
@@ -176,36 +176,36 @@ void abt_permute_kij_par(const float *__restrict__ A, const float *__restrict__ 
 }
 
 // add pragma omp for on j ////////////////////////////// 
-void abt_paralellonj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// void abt_paralellonj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {  
-     for (i = 0; i < Ni; i++)
-          #pragma omp for schedule (static)
-          for (j = 0; j < Nj; j++)
-               for (k = 0; k < Nk; k++)
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
+//   #pragma omp parallel private(i,j,k) 
+//   {  
+//      for (i = 0; i < Ni; i++)
+//           #pragma omp for schedule (static)
+//           for (j = 0; j < Nj; j++)
+//                for (k = 0; k < Nk; k++)
+//                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
 
-  }
+//   }
 
-}
+// }
 
 // add pragma omp for on j using ikj permutation ////////////////////////////// 
-void abt_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// void abt_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {  
-     for (i = 0; i < Ni; i++)
-          for (k = 0; k < Nk; k++)
-               #pragma omp for schedule (static)
-               for (j = 0; j < Nj; j++)
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
+//   #pragma omp parallel private(i,j,k) 
+//   {  
+//      for (i = 0; i < Ni; i++)
+//           for (k = 0; k < Nk; k++)
+//                #pragma omp for schedule (static)
+//                for (j = 0; j < Nj; j++)
+//                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[j*Nk+k];
 
-  }
+//   }
 
-}
+// }
 
 
 // j unroll on ikj permutation ////////////////////////////// 

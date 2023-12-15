@@ -21,29 +21,29 @@ void ab_par(const float *__restrict__ A, const float *__restrict__ B, float *__r
 }
 
 ///////////////// k unrolling ///////////////////////////////////////////////
-void ab_kunroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// void ab_kunroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {
+//   #pragma omp parallel private(i,j,k) 
+//   {
 
-     #pragma omp for schedule (static)
-     for (i = 0; i < Ni; i++) {
-       for (j = 0; j < Nj; j++) {
-          int rem = Nk % 4;
-          for (k = 0; k < rem; k++){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
-          }
-          for (k = rem; k < Nk; k+=4){
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
-               C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[(k+3)*Nj+j];
-          }
-       }
-     }
-  }
-}
+//      #pragma omp for schedule (static)
+//      for (i = 0; i < Ni; i++) {
+//        for (j = 0; j < Nj; j++) {
+//           int rem = Nk % 4;
+//           for (k = 0; k < rem; k++){
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+//           }
+//           for (k = rem; k < Nk; k+=4){
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+1)]*B[(k+1)*Nj+j];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+2)]*B[(k+2)*Nj+j];
+//                C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+(k+3)]*B[(k+3)*Nj+j];
+//           }
+//        }
+//      }
+//   }
+// }
 
 ///////////////// j unrolling ///////////////////////////////////////////////
 void ab_junroll_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
@@ -130,37 +130,37 @@ void ab_permute_kij_par(const float *__restrict__ A, const float *__restrict__ B
 
 }
 
-// add pragma omp for on j ////////////////////////////// 
-void ab_paralellonj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// // add pragma omp for on j ////////////////////////////// 
+// void ab_paralellonj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {  
-     for (i = 0; i < Ni; i++)
-          #pragma omp for schedule (static)
-          for (j = 0; j < Nj; j++)
-               for (k = 0; k < Nk; k++)
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+//   #pragma omp parallel private(i,j,k) 
+//   {  
+//      for (i = 0; i < Ni; i++)
+//           #pragma omp for schedule (static)
+//           for (j = 0; j < Nj; j++)
+//                for (k = 0; k < Nk; k++)
+//                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
 
-  }
+//   }
 
-}
+// }
 
-// add pragma omp for on j using ikj permutation ////////////////////////////// 
-void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
-     int i, j, k;
+// // add pragma omp for on j using ikj permutation ////////////////////////////// 
+// void ab_paralellonj_permute_ikj_par(const float *__restrict__ A, const float *__restrict__ B, float *__restrict__ C, int Ni, int Nj, int Nk) {
+//      int i, j, k;
 
-  #pragma omp parallel private(i,j,k) 
-  {  
-     for (i = 0; i < Ni; i++)
-          for (k = 0; k < Nk; k++)
-               #pragma omp for schedule (static)
-               for (j = 0; j < Nj; j++)
-                    C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
+//   #pragma omp parallel private(i,j,k) 
+//   {  
+//      for (i = 0; i < Ni; i++)
+//           for (k = 0; k < Nk; k++)
+//                #pragma omp for schedule (static)
+//                for (j = 0; j < Nj; j++)
+//                     C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
 
-  }
+//   }
 
-}
+// }
 
 
 // j unroll on ikj permutation ////////////////////////////// 
