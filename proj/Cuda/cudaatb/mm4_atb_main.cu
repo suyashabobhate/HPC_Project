@@ -63,11 +63,11 @@ int main(){
   checkCUDAError("cudaMemcpy H2D transfer failure");
 
   dim3 block(BLOCK_SIZE,BLOCK_SIZE);  
-  dim3 grid(ceil(Nk/(float)BLOCK_SIZE),ceil(Nj/(float)BLOCK_SIZE));
-  dim3 grid2(ceil(Ni/(float)BLOCK_SIZE),ceil(Nk/4/(float)BLOCK_SIZE)); // j unroll 4
-  dim3 grid3(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nk/(float)BLOCK_SIZE)); // i unroll 4
-  dim3 grid4(ceil(Ni/(float)BLOCK_SIZE),ceil(Nk/8/(float)BLOCK_SIZE)); // j unroll 8
-  dim3 grid5(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nk/4/(float)BLOCK_SIZE)); // ij unroll 4
+  dim3 grid(ceil(Ni/(float)BLOCK_SIZE),ceil(Nj/(float)BLOCK_SIZE));
+  dim3 grid2(ceil(Ni/(float)BLOCK_SIZE),ceil(Nj/4/(float)BLOCK_SIZE)); // j unroll 4
+  dim3 grid3(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nj/(float)BLOCK_SIZE)); // i unroll 4
+  dim3 grid4(ceil(Ni/(float)BLOCK_SIZE),ceil(Nj/8/(float)BLOCK_SIZE)); // j unroll 8
+  dim3 grid5(ceil(Ni/4/(float)BLOCK_SIZE),ceil(Nj/4/(float)BLOCK_SIZE)); // ij unroll 4
 
   for(int version=0; version<6; version++)
   {

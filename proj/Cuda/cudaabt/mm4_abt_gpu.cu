@@ -3,12 +3,13 @@ __global__ void abt_gpu(const float *__restrict__ A, const float *__restrict__ B
   int row = blockDim.x*blockIdx.x+threadIdx.x;
   int col = blockDim.y*blockIdx.y+threadIdx.y;
   float sum = 0;
-
-  for (int k = 0; k < Nk; k++) {
-    sum += A[row * Nk + k] * B[col * Nk + k];
+  if((row < Ni) && (col < Nj)) {
+    for (int k = 0; k < Nk; k++) {
+      sum += A[row * Nk + k] * B[col * Nk + k];
+    }
+    
+    C[row * Nj + col] = sum; 
   }
-  
-  C[row * Nj + col] = sum; 
 }
 
 
@@ -18,15 +19,20 @@ __global__ void abt_gpu_kunroll(const float *__restrict__ A, const float *__rest
   int row = blockDim.x*blockIdx.x+threadIdx.x;
   int col = blockDim.y*blockIdx.y+threadIdx.y;
   float sum = 0;
-
-  for (int k = 0; k < Nk; k+=4) {
-    sum += A[row * Nk + k] * B[col * Nk + k];
-    sum += A[row * Nk + (k+1)] * B[col * Nk + (k+1)];
-    sum += A[row * Nk + (k+2)] * B[col * Nk + (k+2)];
-    sum += A[row * Nk + (k+3)] * B[col * Nk + (k+3)];
-  }
-  
-  C[row * Nj + col] = sum; 
+  if((row < Ni) && (col < Nj)) {
+    int rem = Nk % 4;
+    for (int k = 0; k < rem; k++) {
+      sum += A[row * Nk + k] * B[col * Nk + k];
+    }
+    for (int k = rem; k < Nk; k+=4) {
+      sum += A[row * Nk + k] * B[col * Nk + k];
+      sum += A[row * Nk + (k+1)] * B[col * Nk + (k+1)];
+      sum += A[row * Nk + (k+2)] * B[col * Nk + (k+2)];
+      sum += A[row * Nk + (k+3)] * B[col * Nk + (k+3)];
+    }
+    
+    C[row * Nj + col] = sum;
+  } 
 }
 
 // j unroll by 4 //
@@ -36,18 +42,19 @@ __global__ void abt_gpu_junroll(const float *__restrict__ A, const float *__rest
   int col = 4*(blockDim.y*blockIdx.y+threadIdx.y);
   float sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0;
 
-  for (int k = 0; k < Nk; k++) {
-    sum1 += A[row * Nk + k] * B[col * Nk + k];
-    sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
-    sum3 += A[row * Nk + k] * B[(col+2) * Nk + k ];
-    sum4 += A[row * Nk + k] * B[(col+3) * Nk + k ];
+  if((row < Ni) && (col < Nj/4)) {
+    for (int k = 0; k < Nk; k++) {
+      sum1 += A[row * Nk + k] * B[col * Nk + k];
+      sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
+      sum3 += A[row * Nk + k] * B[(col+2) * Nk + k ];
+      sum4 += A[row * Nk + k] * B[(col+3) * Nk + k ];
+    }
+    
+    C[row * Nj + col] = sum1;
+    C[row * Nj + (col+1)] = sum2;
+    C[row * Nj + (col+2)] = sum3;
+    C[row * Nj + (col+3)] = sum4;
   }
-  
-  C[row * Nj + col] = sum1;
-  C[row * Nj + (col+1)] = sum2;
-  C[row * Nj + (col+2)] = sum3;
-  C[row * Nj + (col+3)] = sum4;
-
 }
 
 // i unroll //
@@ -57,18 +64,19 @@ __global__ void abt_gpu_iunroll(const float *__restrict__ A, const float *__rest
   int col = blockDim.y*blockIdx.y+threadIdx.y;
   float sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0;
 
-  for (int k = 0; k < Nk; k++) {
-    sum1 += A[row * Nk + k] * B[col * Nk + k];
-    sum2 += A[(row + blockDim.x) * Nk + k] * B[col * Nk + k];
-    sum3 += A[(row + 2*blockDim.x)* Nk + k] * B[col * Nk + k];
-    sum4 += A[(row + 3*blockDim.x) * Nk + k] * B[col * Nk + k];
+  if((row < Ni/4) && (col < Nj)) {
+    for (int k = 0; k < Nk; k++) {
+      sum1 += A[row * Nk + k] * B[col * Nk + k];
+      sum2 += A[(row + blockDim.x) * Nk + k] * B[col * Nk + k];
+      sum3 += A[(row + 2*blockDim.x)* Nk + k] * B[col * Nk + k];
+      sum4 += A[(row + 3*blockDim.x) * Nk + k] * B[col * Nk + k];
+    }
+    
+    C[row * Nj + col] = sum1;
+    C[(row + blockDim.x) * Nj + col] = sum2;
+    C[(row + 2*blockDim.x) * Nj + col] = sum3;
+    C[(row + 3*blockDim.x) * Nj + col] = sum4;
   }
-  
-  C[row * Nj + col] = sum1;
-  C[(row + blockDim.x) * Nj + col] = sum2;
-  C[(row + 2*blockDim.x) * Nj + col] = sum3;
-  C[(row + 3*blockDim.x) * Nj + col] = sum4;
-
 }
 
 // i and j unroll by 4 //
@@ -82,48 +90,49 @@ __global__ void abt_gpu_ijunroll(const float *__restrict__ A, const float *__res
   sum8 = 0, sum9 = 0, sum10 = 0, sum11 = 0, 
   sum12 = 0, sum13 = 0, sum14 = 0, sum15 = 0, sum16 = 0;
 
-  for (int k = 0; k < Nk; k++) {
-    sum1 += A[row * Nk + k] * B[col * Nk + k];
-    sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
-    sum3 += A[row * Nk + k] * B[(col+2) * Nk + k ];
-    sum4 += A[row * Nk + k] * B[(col+3) * Nk + k];
+  if((row < Ni/4) && (col < Nj/4)) {
+    for (int k = 0; k < Nk; k++) {
+      sum1 += A[row * Nk + k] * B[col * Nk + k];
+      sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
+      sum3 += A[row * Nk + k] * B[(col+2) * Nk + k ];
+      sum4 += A[row * Nk + k] * B[(col+3) * Nk + k];
 
-    sum5 += A[(row + blockDim.x) * Nk + k] * B[col * Nk + k];
-    sum6 += A[(row + blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
-    sum7 += A[(row + blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
-    sum8 += A[(row + blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
+      sum5 += A[(row + blockDim.x) * Nk + k] * B[col * Nk + k];
+      sum6 += A[(row + blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
+      sum7 += A[(row + blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
+      sum8 += A[(row + blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
 
-    sum9 += A[(row + 2*blockDim.x) * Nk + k] * B[col * Nk + k];
-    sum10 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
-    sum11 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
-    sum12 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
+      sum9 += A[(row + 2*blockDim.x) * Nk + k] * B[col * Nk + k];
+      sum10 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
+      sum11 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
+      sum12 += A[(row + 2*blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
 
-    sum13 += A[(row + 3*blockDim.x)* Nk + k] * B[col * Nk + k];
-    sum14 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
-    sum15 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
-    sum16 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
+      sum13 += A[(row + 3*blockDim.x)* Nk + k] * B[col * Nk + k];
+      sum14 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+1) * Nk + k];
+      sum15 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+2) * Nk + k];
+      sum16 += A[(row + 3*blockDim.x) * Nk + k] * B[(col+3) * Nk + k];
+    }
+    
+    C[row * Nj + col] = sum1;
+    C[row * Nj + (col+1)] = sum2;
+    C[row * Nj + (col+2)] = sum3;
+    C[row * Nj + (col+3)] = sum4;
+
+    C[(row + blockDim.x) * Nj + col] = sum5;
+    C[(row + blockDim.x) * Nj + (col+1)] = sum6;
+    C[(row + blockDim.x) * Nj + (col+2)] = sum7;
+    C[(row + blockDim.x) * Nj + (col+3)] = sum8;
+
+    C[(row + 2*blockDim.x) * Nj + col] = sum9;
+    C[(row + 2*blockDim.x) * Nj + (col+1)] = sum10;
+    C[(row + 2*blockDim.x) * Nj + (col+2)] = sum11;
+    C[(row + 2*blockDim.x) * Nj + (col+3)] = sum12;
+
+    C[(row + 3*blockDim.x) * Nj + col] = sum13;
+    C[(row + 3*blockDim.x) * Nj + (col+1)] = sum14;
+    C[(row + 3*blockDim.x) * Nj + (col+2)] = sum15;
+    C[(row + 3*blockDim.x) * Nj + (col+3)] = sum16;
   }
-  
-  C[row * Nj + col] = sum1;
-  C[row * Nj + (col+1)] = sum2;
-  C[row * Nj + (col+2)] = sum3;
-  C[row * Nj + (col+3)] = sum4;
-
-  C[(row + blockDim.x) * Nj + col] = sum5;
-  C[(row + blockDim.x) * Nj + (col+1)] = sum6;
-  C[(row + blockDim.x) * Nj + (col+2)] = sum7;
-  C[(row + blockDim.x) * Nj + (col+3)] = sum8;
-
-  C[(row + 2*blockDim.x) * Nj + col] = sum9;
-  C[(row + 2*blockDim.x) * Nj + (col+1)] = sum10;
-  C[(row + 2*blockDim.x) * Nj + (col+2)] = sum11;
-  C[(row + 2*blockDim.x) * Nj + (col+3)] = sum12;
-
-  C[(row + 3*blockDim.x) * Nj + col] = sum13;
-  C[(row + 3*blockDim.x) * Nj + (col+1)] = sum14;
-  C[(row + 3*blockDim.x) * Nj + (col+2)] = sum15;
-  C[(row + 3*blockDim.x) * Nj + (col+3)] = sum16;
-
 
 }
 
@@ -135,27 +144,28 @@ __global__ void abt_gpu_junroll8(const float *__restrict__ A, const float *__res
   int col = 8*(blockDim.y*blockIdx.y+threadIdx.y);
   float sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0, sum5 = 0, sum6 = 0, sum7 = 0, sum8 = 0;
 
-  for (int k = 0; k < Nk; k++) {
-    sum1 += A[row * Nk + k] * B[col * Nk + k];
-    sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
-    sum3 += A[row * Nk + k] * B[(col+2) * Nk + k];
-    sum4 += A[row * Nk + k] * B[(col+3) * Nk + k];
-    sum5 += A[row * Nk + k] * B[(col+4) * Nk + k];
-    sum6 += A[row * Nk + k] * B[(col+5) * Nk + k];
-    sum7 += A[row * Nk + k] * B[(col+6) * Nk + k];
-    sum8 += A[row * Nk + k] * B[(col+7) * Nk + k];
+  if((row < Ni) && (col < Nj/8)) {
+    for (int k = 0; k < Nk; k++) {
+      sum1 += A[row * Nk + k] * B[col * Nk + k];
+      sum2 += A[row * Nk + k] * B[(col+1) * Nk + k];
+      sum3 += A[row * Nk + k] * B[(col+2) * Nk + k];
+      sum4 += A[row * Nk + k] * B[(col+3) * Nk + k];
+      sum5 += A[row * Nk + k] * B[(col+4) * Nk + k];
+      sum6 += A[row * Nk + k] * B[(col+5) * Nk + k];
+      sum7 += A[row * Nk + k] * B[(col+6) * Nk + k];
+      sum8 += A[row * Nk + k] * B[(col+7) * Nk + k];
+    }
+    
+    C[row * Nj + col] = sum1;
+    C[row * Nj + (col+1)] = sum2;
+    C[row * Nj + (col+2)] = sum3;
+    C[row * Nj + (col+3)] = sum4;
+    C[row * Nj + (col+4)] = sum5;
+    C[row * Nj + (col+5)] = sum6;
+    C[row * Nj + (col+6)] = sum7;
+    C[row * Nj + (col+7)] = sum8;
+
   }
-  
-  C[row * Nj + col] = sum1;
-  C[row * Nj + (col+1)] = sum2;
-  C[row * Nj + (col+2)] = sum3;
-  C[row * Nj + (col+3)] = sum4;
-  C[row * Nj + (col+4)] = sum5;
-  C[row * Nj + (col+5)] = sum6;
-  C[row * Nj + (col+6)] = sum7;
-  C[row * Nj + (col+7)] = sum8;
-
-
 }
 
 
