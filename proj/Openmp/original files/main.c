@@ -13,11 +13,10 @@ int main(int argc, char *argv[]){
   double mint_seq,maxt_seq;
 
   int nt,trial,max_threads,num_cases;
-  int nthreads[3];
+  int nthreads[1];
   int Ni, Nj, Nk;
   char command[1000];
 
-  printf("Specify Matrix dimension Ni, Nj, Nk: ");
   if(argc >= 3) {
         Ni = atoi(argv[1]);
         Nj = atoi(argv[2]);
@@ -25,7 +24,7 @@ int main(int argc, char *argv[]){
   }
 
   max_threads = omp_get_max_threads();
-  num_cases = 3; nthreads[0]=1; nthreads[1] = max_threads/2 - 1; nthreads[2] = max_threads - 1;
+  num_cases = 1; nthreads[0]=max_threads - 1;
 
   for(int version=0; version<4;version++)
   { 
