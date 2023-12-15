@@ -30,18 +30,18 @@ void ab_seq(const float *__restrict__ A, const float *__restrict__ B, float *__r
      C[i*Nj+j]=C[i*Nj+j]+A[i*Nk+k]*B[k*Nj+j];
 }
 
-int main(){
+int main(int argc, char *argv[]){
 
   float *h_A, *h_B, *h_C, *h_Cref, *d_A, *d_B, *d_C;
   int i,j,k;
-  int Ni, Nj, Nk;
-
-  // int Ni = atoi(argv[1]);
-  // int Nj = atoi(argv[2]);
-  // int Nk = atoi(argv[3]);
+  int Ni,Nj,Nk;
 
   printf("Specify Matrix dimension Ni, Nj, Nk: ");
-  scanf("%d %d %d", &Ni,&Nj,&Nk);
+  if(argc >= 3) {
+        Ni = atoi(argv[1]);
+        Nj = atoi(argv[2]);
+        Nk = atoi(argv[3]);
+  }
 
   h_A = (float *) malloc(sizeof(float)*Ni*Nk);
   h_B = (float *) malloc(sizeof(float)*Nk*Nj);
