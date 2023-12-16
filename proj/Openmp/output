@@ -1,41 +1,5 @@
 [u1414463@lab1-29 original files]$ clang -O3 -fopenmp -o maintemp main.c
 [u1414463@lab1-29 original files]$ ./maintemp 1024 1024 1024
-For ATB for trial: 1 
-Max Threads (from omp_get_max_threads) = 16
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.84; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 4.47 
-Worst Performance (GFLOPS): 4.06 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.83; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_junroll_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 12.38 
-Worst Performance (GFLOPS): 12.24 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.83; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_alltile16_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 10.92 
-Worst Performance (GFLOPS): 10.88 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.84; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_permute_ikj_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 33.89 
-Worst Performance (GFLOPS): 33.81 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.83; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_permute_kij_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 103.59 
-Worst Performance (GFLOPS): 102.98 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.84; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_junroll_permute_ikj_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 33.88 
-Worst Performance (GFLOPS): 33.85 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.84; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_kunroll_permute_ikj_par (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 132.99 
-Worst Performance (GFLOPS): 125.78 
-Reference sequential code performance for ATB (in GFLOPS) Min: 0.84; Max: 0.84
-Performance (Best & Worst) of parallel version for atb_junrollby2 (in GFLOPS) using 15 threads
-Best Performance (GFLOPS): 7.23 
-Worst Performance (GFLOPS): 7.15 
-[u1414463@lab1-29 original files]$ clang -O3 -fopenmp -o maintemp main.c
-[u1414463@lab1-29 original files]$ ./maintemp 1024 1024 1024
 For AB for trial: 1 
 Max Threads (from omp_get_max_threads) = 16
 Reference sequential code performance for AB (in GFLOPS) Min: 1.54; Max: 1.55
